@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+
+    <!-- Scanner Section -->
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold mb-4">Scan QR Code</h2>
+
+        <div id="reader" class="mb-4"></div>
+
+        <div id="scan-result" class="mt-4 p-4 bg-gray-50 rounded-md hidden">
+            <h3 class="font-medium text-gray-900">Scan Result:</h3>
+
+            <p id="result" class="mt-2 text-gray-600 break-all"></p>
+
+        </div>
+    </div>
+
+    <script>
+        // QR Code Scanner
+        function onScanSuccess(decodedText) {
+            document.getElementById('scan-result').classList.remove('hidden');
+            document.getElementById('result').textContent = decodedText;
+        }
+
+        function onScanError(error) {
+            console.warn(`QR error: ${error}`);
+        }
+
+        let html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader",
+            { fps: 10, qrbox: { width: 500, height: 500 } },
+            false
+        );
+
+        html5QrcodeScanner.render(onScanSuccess, onScanError);
+    </script>
+</body>
+
+</html>
