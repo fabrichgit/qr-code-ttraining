@@ -76,5 +76,3 @@ Dans un fichier HTML :
 Ce projet est sous licence **MIT**.  
 
 ---
-
-J'espère que ce README te convient ! 😊
